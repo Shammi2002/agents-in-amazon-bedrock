@@ -1,4 +1,4 @@
-import boto3
+import boto3 # python SDK in aws.lets you call ,connect with aws services using python code
 import json
 
 def use_converse_api():
@@ -25,14 +25,14 @@ def use_converse_api():
         response = bedrock_runtime.converse(
             modelId=model_id,
             system=system_prompt,
-            messages=[
+            messages=[                           # messages array is about how you structure the conversation that to be send
                 {
-                    "role": "user",
+                    "role": "user",              # send list of messages as context each with role and content
                     "content": [{"text": user_message}]
-                }
+                }                                # as model is stateless the complete conversation should send as contet as each turn during conversation
             ],
             inferenceConfig={
-                "temperature": 0.7,
+                "temperature": 0.7,             # how random, creative model response is
                 "maxTokens": 2000
             }
         )
@@ -45,7 +45,7 @@ def use_converse_api():
 
         # Display token usage
         usage = response.get('usage', {})
-        print(f"\nToken Usage:")
+        print(f"\nToken Usage:")                  #token is small chunk of text
         print(f"  Input tokens: {usage.get('inputTokens', 'N/A')}")
         print(f"  Output tokens: {usage.get('outputTokens', 'N/A')}")
         print(f"  Total tokens: {usage.get('totalTokens', 'N/A')}")
