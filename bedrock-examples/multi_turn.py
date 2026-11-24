@@ -30,7 +30,7 @@ def multi_turn_conversation():
     })
 
     try:
-        response_1 = bedrock_runtime.converse(
+        response_1 = bedrock_runtime.converse(         #convverse API
             modelId=model_id,
             system=system_prompt,
             messages=conversation_history,
